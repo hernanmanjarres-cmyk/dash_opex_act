@@ -1272,8 +1272,7 @@
           <thead><tr>
             <th>OT</th><th>Código BIA</th><th>OR</th><th>Servicio</th><th>Medida</th>
             <th>Contratista</th><th>Fecha</th>
-            <th class="right">Forecast</th>
-            <th class="right" title="Override del forecast: ingresá la cotización del contratista">Cotización</th>
+            <th class="right" title="Forecast Metabase; editá para poner cotización del contratista">Forecast</th>
             <th class="right" title="Solo aplica a INST/NORM">Descargo</th>
             <th class="right">Acomp.</th>
             <th class="right">Adicional</th>
@@ -1957,14 +1956,13 @@
         <td>${ot.tipo_de_medida || '-'}</td>
         <td>${ot.contratista || '-'}</td>
         <td>${ot.fecha_programada || '-'}</td>
-        <td class="right" style="color:var(--text-dim)">${fmtCOP(ot.total_ot)}</td>
         <td class="right">${otInput(ot, 'forecast_override', ad.forecast_override, ot.total_ot)}</td>
         <td class="right">${otInput(ot, 'descargo', ad.descargo, tarifaDesc)}</td>
         <td class="right">${otInput(ot, 'acompanamiento', ad.acompanamiento, tarifaAcomp)}</td>
         <td class="right">${otInput(ot, 'monto', ad.monto, 0)}</td>
         <td class="right"><strong>${fmtCOP(total)}</strong></td>
       </tr>`;
-    }).join('') || '<tr><td colspan="13" class="empty">Sin OTs abiertas este mes.</td></tr>';
+    }).join('') || '<tr><td colspan="12" class="empty">Sin OTs abiertas este mes.</td></tr>';
 
     // Subtotales (usa baseAbiertoDeOt para respetar forecast_override)
     const f = sum(otas.filter(o => !o.is_bia).map(baseAbiertoDeOt));
