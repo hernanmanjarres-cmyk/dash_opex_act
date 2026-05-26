@@ -1762,12 +1762,14 @@
   // Si hay override (ADICIONALES[ot.codigo_ot].descargo o .acompanamiento) se usa ese.
   // Si no, se usa la tarifa por OR (descargo) o global (acompañamiento).
   function descargoDeOt(ot) {
+    if (ot.electrician_status_id === 'CLOSURE_CANCELED') return 0;
     if (ot.service_type_id !== 'INST' && ot.service_type_id !== 'NORM') return 0;
     const ad = ADICIONALES[ot.codigo_ot] || {};
     if (ad.descargo != null) return Number(ad.descargo);
     return (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
   }
   function acompanamientoDeOt(ot) {
+    if (ot.electrician_status_id === 'CLOSURE_CANCELED') return 0;
     const ad = ADICIONALES[ot.codigo_ot] || {};
     // Override manual tiene prioridad para cualquier servicio
     if (ad.acompanamiento != null) return Number(ad.acompanamiento);
@@ -1915,7 +1917,11 @@
   function otInput(ot, field, currentVal, defaultVal, opts = {}) {
     const editable = canEdit();
     const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
-    if (field === 'descargo' && !isInstNorm) {
+    const isCancelada = ot.electrician_status_id === 'CLOSURE_CANCELED';
+    if (field === 'descargo' && (!isInstNorm || isCancelada)) {
+      return '<span style="color:var(--text-dim);font-size:12px">$0</span>';
+    }
+    if (field === 'acompanamiento' && isCancelada) {
       return '<span style="color:var(--text-dim);font-size:12px">$0</span>';
     }
     // Si current es null/undefined, mostrar el default tarifario pero como placeholder (no value)
