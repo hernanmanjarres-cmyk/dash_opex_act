@@ -234,7 +234,7 @@ WHERE v.fecha_visita >= date_trunc('month', CURRENT_DATE)
   AND v.electrician_status_id IN ('CLOSURE_SUCCESSFUL','CLOSURE_FAILED','CLOSURE_CANCELED')
 GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 ORDER BY
-  CASE electrician_status_id
+  CASE v.electrician_status_id
     WHEN 'CLOSURE_SUCCESSFUL' THEN 1
     WHEN 'CLOSURE_FAILED'     THEN 2
     WHEN 'CLOSURE_CANCELED'   THEN 3
