@@ -208,7 +208,7 @@ ORDER BY total_ot DESC NULLS LAST, a.fecha_programada
 
 
 def build_ots_ejecutadas():
-    """OTs exitosas del mes con costo real desde opex_costs_general."""
+    """OTs cerradas del mes (exitosas, fallidas y canceladas) con costo real."""
     sql = """
 SELECT v.id::text AS codigo_ot,
        v.title AS ot_title,
@@ -222,18 +222,25 @@ SELECT v.id::text AS codigo_ot,
        v.fecha_visita::text AS fecha_visita,
        to_char(v.fecha_visita, 'YYYY-MM') AS mes_id,
        (v.contratista = 'BIA') AS is_bia,
-       ROUND(SUM(oc.service_cost + oc.material_cost + oc.transport_cost + oc.other_cost)) AS costo_real
+       COALESCE(ROUND(SUM(oc.service_cost + oc.material_cost + oc.transport_cost + oc.other_cost)), 0) AS costo_real
 FROM operations.visitas_general v
 LEFT JOIN operations.opex_costs_general oc ON oc.visit_id::text = v.id::text
+  AND (oc.is_bia = false OR oc.is_bia IS NULL)
+  AND COALESCE(oc.status, 'accepted') = 'accepted'
 LEFT JOIN operations.hubspot_general h ON h.codigo_bia = v.internal_bia_code
 WHERE v.fecha_visita >= date_trunc('month', CURRENT_DATE)
   AND v.fecha_visita < date_trunc('month', CURRENT_DATE) + INTERVAL '1 month'
   AND v.service_type_id IN ('VIPE','INST','NORM','LEGA','PREV','REQA','SUCA','VEXT')
-  AND v.electrician_status_id = 'CLOSURE_SUCCESSFUL'
-  AND (oc.is_bia = false OR oc.is_bia IS NULL)
-  AND COALESCE(oc.status, 'accepted') = 'accepted'
+  AND v.electrician_status_id IN ('CLOSURE_SUCCESSFUL','CLOSURE_FAILED','CLOSURE_CANCELED')
 GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-ORDER BY costo_real DESC NULLS LAST, v.fecha_visita
+ORDER BY
+  CASE v.electrician_status_id
+    WHEN 'CLOSURE_SUCCESSFUL' THEN 1
+    WHEN 'CLOSURE_FAILED'     THEN 2
+    WHEN 'CLOSURE_CANCELED'   THEN 3
+  END,
+  costo_real DESC NULLS LAST,
+  v.fecha_visita
 """.strip()
     return rows_from(run_sql(DB_GOLD, sql))
 

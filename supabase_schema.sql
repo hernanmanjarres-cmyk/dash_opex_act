@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS public.dashboard_adicionales (
 -- Migración idempotente: si la tabla ya existía sin estas columnas, las agregamos.
 ALTER TABLE public.dashboard_adicionales ADD COLUMN IF NOT EXISTS descargo NUMERIC;
 ALTER TABLE public.dashboard_adicionales ADD COLUMN IF NOT EXISTS acompanamiento NUMERIC;
+ALTER TABLE public.dashboard_adicionales ADD COLUMN IF NOT EXISTS forecast_override NUMERIC;
+ALTER TABLE public.dashboard_adicionales ADD COLUMN IF NOT EXISTS usuario_asume_costo BOOLEAN DEFAULT FALSE;
 
 CREATE INDEX IF NOT EXISTS idx_dashboard_adicionales_updated
   ON public.dashboard_adicionales (updated_at DESC);

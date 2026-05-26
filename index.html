@@ -76,6 +76,12 @@
     .badge.role-lector { background:rgba(148,163,184,0.2); color:var(--text-dim); }
     .badge.role-usuario { background:rgba(56,189,248,0.15); color:var(--accent); }
     .badge.role-super_admin { background:rgba(245,158,11,0.15); color:var(--warn); }
+    .badge.exitosa  { background:rgba(34,197,94,0.15);  color:var(--ok); }
+    .badge.fallida  { background:rgba(239,68,68,0.15);  color:var(--danger); }
+    .badge.cancelada{ background:rgba(148,163,184,0.15);color:var(--text-dim); }
+    tr.usr-asume td { opacity:0.55; text-decoration-color:rgba(255,255,255,0.3); }
+    tr.usr-asume td strong { text-decoration:line-through; }
+    .ot-asume-check { width:16px; height:16px; cursor:pointer; accent-color:var(--ok); }
 
     .help { font-size:12px; color:var(--text-dim); margin-top:6px; line-height:1.4; }
     .footer { margin-top:32px; padding-top:16px; border-top:1px solid var(--border); text-align:center; color:var(--text-dim); font-size:12px; }
@@ -698,8 +704,9 @@
             <th>OT</th><th>Código BIA</th><th>OR</th><th>Servicio</th><th>Medida</th>
             <th>Contratista</th><th>Fecha</th>
             <th class="right">Forecast</th>
+            <th class="right" title="Override del forecast: ingresá la cotización del contratista">Cotización</th>
             <th class="right" title="Solo aplica a INST/NORM">Descargo</th>
-            <th class="right" title="Solo aplica a INST/NORM">Acomp.</th>
+            <th class="right">Acomp.</th>
             <th class="right">Adicional</th>
             <th class="right">Total OT</th>
           </tr></thead>
@@ -728,13 +735,14 @@
         <div style="overflow-x:auto;">
         <table id="ejecutadas-table">
           <thead><tr>
-            <th>OT</th><th>Código BIA</th><th>OR</th><th>Servicio</th><th>Medida</th>
+            <th>OT</th><th>Estado</th><th>Código BIA</th><th>OR</th><th>Servicio</th><th>Medida</th>
             <th>Contratista</th><th>Fecha cierre</th>
             <th class="right">Costo real</th>
             <th class="right" title="Solo aplica a INST/NORM">Descargo</th>
-            <th class="right" title="Solo aplica a INST/NORM">Acomp.</th>
+            <th class="right">Acomp.</th>
             <th class="right">Adicional</th>
             <th class="right">Total OT</th>
+            <th class="right" title="Canceladas/fallidas donde el costo lo asume el usuario final">Usr. asume</th>
           </tr></thead>
           <tbody id="ejecutadas-tbody"></tbody>
           <tfoot><tr style="font-weight:600;border-top:2px solid var(--border);">
@@ -1060,21 +1068,26 @@
   // CRUD adicionales
   // ═══════════════════════════════════════════════════════════════════
   // Actualiza UN campo de la fila por OT.
-  // field: 'monto' | 'descargo' | 'acompanamiento'
-  // value: string del input. '' / 0 → null (vuelve al default tarifario)
+  // field: 'monto' | 'descargo' | 'acompanamiento' | 'forecast_override' | 'usuario_asume_costo'
+  // value: string del input o boolean para checkboxes. '' / null → null (vuelve al default)
   async function setOtField(otId, field, value) {
     if (!canEdit()) return;
-    const parsed = (value === '' || value == null) ? null : Number(value);
-    // Conseguir lo existente (puede estar en memoria sin haberse persistido aún)
-    const existing = ADICIONALES[otId] || { ot_id: otId, monto: 0, descargo: null, acompanamiento: null };
+    const isBool = field === 'usuario_asume_costo';
+    const parsed = isBool
+      ? (value ? true : null)
+      : (value === '' || value == null) ? null : Number(value);
+    const existing = ADICIONALES[otId] || {
+      ot_id: otId, monto: 0, descargo: null, acompanamiento: null,
+      forecast_override: null, usuario_asume_costo: null
+    };
     const updated = { ...existing, [field]: parsed };
-    // monto siempre tiene que ser número (DB es NOT NULL DEFAULT 0)
     if (field === 'monto') updated.monto = parsed || 0;
 
-    // Si TODO está vacío/0 → borrar la fila
     const isEmpty = (!updated.monto || updated.monto === 0)
                  && updated.descargo == null
-                 && updated.acompanamiento == null;
+                 && updated.acompanamiento == null
+                 && updated.forecast_override == null
+                 && !updated.usuario_asume_costo;
 
     if (!sb) {
       if (isEmpty) delete ADICIONALES[otId];
@@ -1093,6 +1106,8 @@
         monto: updated.monto || 0,
         descargo: updated.descargo,
         acompanamiento: updated.acompanamiento,
+        forecast_override: updated.forecast_override,
+        usuario_asume_costo: updated.usuario_asume_costo || false,
         updated_by: MY_EMAIL,
       };
       const { data, error } = await sb.from('dashboard_adicionales').upsert(row).select().single();
@@ -1140,7 +1155,12 @@
   }
 
   function totalEjecutadoServicios() { return sum(ejecutadoServiciosMes().map(r => r.monto)); }
-  function totalForecastOTs() { return sum(otsAbiertasMes().filter(o => !o.is_bia).map(o => o.total_ot)); }
+  // Usa forecast_override si existe, si no el valor de Metabase
+  function baseAbiertoDeOt(ot) {
+    const ad = ADICIONALES[ot.codigo_ot] || {};
+    return ad.forecast_override != null ? Number(ad.forecast_override) : (ot.total_ot || 0);
+  }
+  function totalForecastOTs() { return sum(otsAbiertasMes().filter(o => !o.is_bia).map(baseAbiertoDeOt)); }
 
   // Helpers que devuelven descargo / acompañamiento aplicable a UNA OT.
   // Si hay override (ADICIONALES[ot.codigo_ot].descargo o .acompanamiento) se usa ese.
@@ -1313,11 +1333,13 @@
               title="${hasOverride ? 'Override manual' : 'Default tarifario · escribí un número para override'}">`;
   }
 
-  // Total visible de una OT considerando overrides
-  function totalDeOt(ot, base) {
+  // Total visible de una OT considerando overrides.
+  // useBase=true → aplica forecast_override sobre el base (para abiertas)
+  function totalDeOt(ot, base, useBase = false) {
     const ad = ADICIONALES[ot.codigo_ot] || {};
+    const effectiveBase = useBase ? baseAbiertoDeOt(ot) : (base || 0);
     const monto = Number(ad.monto || 0);
-    return (base || 0) + monto + descargoDeOt(ot) + acompanamientoDeOt(ot);
+    return effectiveBase + monto + descargoDeOt(ot) + acompanamientoDeOt(ot);
   }
 
   function renderTablaAbiertas() {
@@ -1328,7 +1350,7 @@
       const tarifaDesc = (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
       const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
       const tarifaAcomp = isInstNorm ? (DATA.tarifa_acompanamiento || 0) : 0;
-      const total = totalDeOt(ot, ot.total_ot);
+      const total = totalDeOt(ot, ot.total_ot, true);
       return `<tr class="${ot.is_bia ? 'bia' : ''}">
         <td title="${ot.codigo_ot}" style="font-family:monospace;font-size:12px">${ot.ot_title || (ot.codigo_ot ? ot.codigo_ot.slice(0, 8) + '…' : '-')}</td>
         <td>${ot.codigo_bia || '-'}</td>
@@ -1337,16 +1359,17 @@
         <td>${ot.tipo_de_medida || '-'}</td>
         <td>${ot.contratista || '-'}</td>
         <td>${ot.fecha_programada || '-'}</td>
-        <td class="right">${fmtCOP(ot.total_ot)}</td>
+        <td class="right" style="color:var(--text-dim)">${fmtCOP(ot.total_ot)}</td>
+        <td class="right">${otInput(ot, 'forecast_override', ad.forecast_override, ot.total_ot)}</td>
         <td class="right">${otInput(ot, 'descargo', ad.descargo, tarifaDesc)}</td>
         <td class="right">${otInput(ot, 'acompanamiento', ad.acompanamiento, tarifaAcomp)}</td>
         <td class="right">${otInput(ot, 'monto', ad.monto, 0)}</td>
         <td class="right"><strong>${fmtCOP(total)}</strong></td>
       </tr>`;
-    }).join('') || '<tr><td colspan="12" class="empty">Sin OTs abiertas este mes.</td></tr>';
+    }).join('') || '<tr><td colspan="13" class="empty">Sin OTs abiertas este mes.</td></tr>';
 
-    // Subtotales (todas las OTs, incluyendo BIA porque descargo/acomp aplican igual)
-    const f = sum(otas.filter(o => !o.is_bia).map(o => o.total_ot));
+    // Subtotales (usa baseAbiertoDeOt para respetar forecast_override)
+    const f = sum(otas.filter(o => !o.is_bia).map(baseAbiertoDeOt));
     const d = sum(otas.map(descargoDeOt));
     const ac = sum(otas.map(acompanamientoDeOt));
     const ad = sum(otas.filter(o => !o.is_bia).map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
@@ -1368,8 +1391,24 @@
       const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
       const tarifaAcomp = isInstNorm ? (DATA.tarifa_acompanamiento || 0) : 0;
       const total = totalDeOt(ot, ot.costo_real);
-      return `<tr class="${ot.is_bia ? 'bia' : ''}">
+      const st = ot.electrician_status_id || '';
+      const esFallida   = st === 'CLOSURE_FAILED';
+      const esCancelada = st === 'CLOSURE_CANCELED';
+      const esExitosa   = st === 'CLOSURE_SUCCESSFUL';
+      const statusBadge = esExitosa   ? '<span class="badge exitosa">✅ Exitosa</span>'
+                        : esFallida   ? '<span class="badge fallida">❌ Fallida</span>'
+                        : esCancelada ? '<span class="badge cancelada">⚪ Cancelada</span>'
+                        : `<span class="badge">${st}</span>`;
+      const tieneConflicto = (esFallida || esCancelada) && (ot.costo_real > 0);
+      const asumeCheck = tieneConflicto
+        ? `<input type="checkbox" class="ot-asume-check ot-checkbox"
+             data-ot="${ot.codigo_ot}" data-field="usuario_asume_costo"
+             ${ad.usuario_asume_costo ? 'checked' : ''}
+             title="El costo lo asume el usuario final (no BIA)">`
+        : '<span style="color:var(--text-dim);font-size:11px">—</span>';
+      return `<tr class="${ot.is_bia ? 'bia' : ''} ${ad.usuario_asume_costo ? 'usr-asume' : ''}">
         <td title="${ot.codigo_ot}" style="font-family:monospace;font-size:12px">${ot.ot_title || (ot.codigo_ot ? ot.codigo_ot.slice(0, 8) + '…' : '-')}</td>
+        <td>${statusBadge}</td>
         <td>${ot.codigo_bia || '-'}</td>
         <td>${ot.operador_de_red || '-'}</td>
         <td>${ot.service_name || ot.service_type_id} <span class="badge ${ot.is_bia ? 'bia' : 'ext'}">${ot.is_bia ? 'BIA' : 'ext'}</span></td>
@@ -1381,8 +1420,9 @@
         <td class="right">${otInput(ot, 'acompanamiento', ad.acompanamiento, tarifaAcomp)}</td>
         <td class="right">${otInput(ot, 'monto', ad.monto, 0)}</td>
         <td class="right"><strong>${fmtCOP(total)}</strong></td>
+        <td class="right">${asumeCheck}</td>
       </tr>`;
-    }).join('') || '<tr><td colspan="12" class="empty">Sin OTs ejecutadas (exitosas) este mes.</td></tr>';
+    }).join('') || '<tr><td colspan="14" class="empty">Sin OTs ejecutadas este mes.</td></tr>';
 
     const r = sum(otas.filter(o => !o.is_bia).map(o => o.costo_real || 0));
     const d = sum(otas.map(descargoDeOt));
@@ -1405,7 +1445,13 @@
         timer = setTimeout(async () => {
           await setOtField(e.target.dataset.ot, e.target.dataset.field, e.target.value);
           render();
-        }, 500);  // debounce
+        }, 500);
+      });
+    });
+    scope.querySelectorAll('input.ot-checkbox').forEach(cb => {
+      cb.addEventListener('change', async e => {
+        await setOtField(e.target.dataset.ot, e.target.dataset.field, e.target.checked);
+        render();
       });
     });
   }
