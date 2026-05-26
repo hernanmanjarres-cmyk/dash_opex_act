@@ -730,7 +730,26 @@
       <div class="card">
         <h2>OTs ejecutadas del mes</h2>
         <div class="help" style="margin-bottom:12px;">
-          Visitas exitosas del mes en curso. El <strong>costo real</strong> viene de opex_costs_general. Si una OT tenía adicional cuando estaba abierta, sigue acá. Podés agregar más adicionales (post-cierre).
+          Visitas cerradas del mes (exitosas, fallidas y canceladas). El <strong>costo real</strong> viene de opex_costs_general. Los subtotales solo cuentan contratistas externos.
+        </div>
+        <!-- Filtros -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;align-items:center;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <label style="font-size:13px;color:var(--text-dim);">Servicio</label>
+            <select id="ejec-filtro-servicio" style="font-size:13px;padding:4px 8px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;">
+              <option value="">Todos</option>
+            </select>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <label style="font-size:13px;color:var(--text-dim);">Estado</label>
+            <select id="ejec-filtro-estado" style="font-size:13px;padding:4px 8px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px;">
+              <option value="">Todos</option>
+              <option value="CLOSURE_SUCCESSFUL">✅ Exitosas</option>
+              <option value="CLOSURE_FAILED">❌ Fallidas</option>
+              <option value="CLOSURE_CANCELED">⚪ Canceladas</option>
+            </select>
+          </div>
+          <span id="ejec-count" style="font-size:12px;color:var(--text-dim);margin-left:4px;"></span>
         </div>
         <div style="overflow-x:auto;">
         <table id="ejecutadas-table">
@@ -746,12 +765,13 @@
           </tr></thead>
           <tbody id="ejecutadas-tbody"></tbody>
           <tfoot><tr style="font-weight:600;border-top:2px solid var(--border);">
-            <td colspan="7">Subtotal contratistas</td>
+            <td colspan="8" id="ejec-subtotal-label">Subtotal contratistas</td>
             <td class="right" id="ejecutadas-real-total">—</td>
             <td class="right" id="ejecutadas-descargo-total">—</td>
             <td class="right" id="ejecutadas-acomp-total">—</td>
             <td class="right" id="ejecutadas-adicional-total">—</td>
             <td class="right" id="ejecutadas-total-final">—</td>
+            <td></td>
           </tr></tfoot>
         </table>
         </div>
@@ -963,8 +983,16 @@
 
     sel.addEventListener('change', () => {
       SELECTED_MONTH = sel.value;
+      populateEjecFiltroServicio();
       render();
     });
+
+    // Filtros de ejecutadas
+    const ejecFiltroSvc    = $('ejec-filtro-servicio');
+    const ejecFiltroEstado = $('ejec-filtro-estado');
+    if (ejecFiltroSvc)    ejecFiltroSvc.addEventListener('change',    () => renderTablaEjecutadas());
+    if (ejecFiltroEstado) ejecFiltroEstado.addEventListener('change', () => renderTablaEjecutadas());
+    populateEjecFiltroServicio();
   }
 
   // Cargar tarifas desde dashboard_config y sobreescribir DATA
@@ -1306,6 +1334,7 @@
     $('extras-ejec-total').textContent = fmtCOP(descE + acompE);
     $('extras-proy-total').textContent = fmtCOP(descP + acompP);
 
+    populateEjecFiltroServicio();
     renderTablaAbiertas();
     renderTablaEjecutadas();
   }
@@ -1382,9 +1411,31 @@
     bindOtInputs(tbody);
   }
 
+  function populateEjecFiltroServicio() {
+    const sel = $('ejec-filtro-servicio');
+    if (!sel) return;
+    const servicios = [...new Set((DATA.ots_ejecutadas || []).map(o => o.service_name || o.service_type_id))].sort();
+    const current = sel.value;
+    sel.innerHTML = '<option value="">Todos</option>' +
+      servicios.map(s => `<option value="${s}" ${s === current ? 'selected' : ''}>${s}</option>`).join('');
+  }
+
   function renderTablaEjecutadas() {
     const tbody = $('ejecutadas-tbody');
-    const otas = otsEjecutadasMes();
+    const filtroSvc   = ($('ejec-filtro-servicio')?.value  || '').trim();
+    const filtroEstado= ($('ejec-filtro-estado')?.value    || '').trim();
+    const todasOtas   = otsEjecutadasMes();
+    const otas = todasOtas.filter(o =>
+      (!filtroSvc    || (o.service_name || o.service_type_id) === filtroSvc) &&
+      (!filtroEstado || o.electrician_status_id === filtroEstado)
+    );
+    // Actualizar contador
+    if ($('ejec-count')) {
+      const label = filtroSvc || filtroEstado
+        ? `${otas.length} de ${todasOtas.length} OTs`
+        : `${todasOtas.length} OTs`;
+      $('ejec-count').textContent = label;
+    }
     tbody.innerHTML = otas.map(ot => {
       const ad = ADICIONALES[ot.codigo_ot] || {};
       const tarifaDesc = (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
@@ -1424,10 +1475,13 @@
       </tr>`;
     }).join('') || '<tr><td colspan="14" class="empty">Sin OTs ejecutadas este mes.</td></tr>';
 
-    const r = sum(otas.filter(o => !o.is_bia).map(o => o.costo_real || 0));
-    const d = sum(otas.map(descargoDeOt));
+    // Subtotales siempre sobre el conjunto filtrado visible
+    const r  = sum(otas.filter(o => !o.is_bia).map(o => o.costo_real || 0));
+    const d  = sum(otas.map(descargoDeOt));
     const ac = sum(otas.map(acompanamientoDeOt));
     const ad = sum(otas.filter(o => !o.is_bia).map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
+    const lbl = (filtroSvc || filtroEstado) ? 'Subtotal (filtro activo)' : 'Subtotal contratistas';
+    if ($('ejec-subtotal-label')) $('ejec-subtotal-label').textContent = lbl;
     $('ejecutadas-real-total').textContent = fmtCOP(r);
     $('ejecutadas-descargo-total').textContent = fmtCOP(d);
     $('ejecutadas-acomp-total').textContent = fmtCOP(ac);
