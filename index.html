@@ -2078,6 +2078,7 @@
         clearTimeout(timer);
         timer = setTimeout(async () => {
           await setOtField(e.target.dataset.ot, e.target.dataset.field, e.target.value);
+          console.log('[bindOtInputs] llamando render(), ADICIONALES[ot]:', ADICIONALES[e.target.dataset.ot]);
           render();
         }, 500);
       });
