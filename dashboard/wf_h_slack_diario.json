@@ -1,0 +1,86 @@
+{
+  "name": "WF-H | OPEX Dashboard → Slack diario",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 12 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule — 7:00am COT L-V",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "notes": "Cron en UTC. 12:00 UTC = 7:00am Colombia (UTC-5). Ajustar si n8n tiene timezone configurado."
+    },
+    {
+      "parameters": {
+        "url": "https://hernanmanjarres-cmyk.github.io/dash_opex_act/data.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "fetch-data",
+      "name": "GET data.json (GitHub Pages)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $input.first().json;\n\n// ── Ejecutado mes actual ──────────────────────────────────────────────\nconst mesActual = d.anio_mes_actual;\nconst serviciosEjecutados = (d.ejecutado_por_servicio_by_month?.[mesActual] ?? []);\nconst totalEjecutado = serviciosEjecutados.reduce((s, r) => s + (r.monto || 0), 0);\n\n// ── Forecast OTs abiertas (mes actual) ───────────────────────────────\nconst otsAbiertas = (d.ots_abiertas ?? []).filter(o => o.mes_id === mesActual);\nconst totalForecast = otsAbiertas.reduce((s, o) => s + (o.total_ot || 0), 0);\n\n// ── Presupuesto ───────────────────────────────────────────────────────\nconst presupuesto = d.meta_default ?? 21000000;\n\n// ── Totales ───────────────────────────────────────────────────────────\nconst totalProyectado = totalEjecutado + totalForecast;\nconst desviacion = presupuesto - totalProyectado;\nconst pctEjecutado = presupuesto > 0 ? ((totalEjecutado / presupuesto) * 100).toFixed(1) : '0.0';\nconst pctForecast  = presupuesto > 0 ? ((totalProyectado / presupuesto) * 100).toFixed(1) : '0.0';\n\n// ── Helpers ──────────────────────────────────────────────────────────\nconst fmt = n => '$' + Math.round(n).toLocaleString('es-CO');\nconst fmtDes = n => {\n  const abs = fmt(Math.abs(n));\n  return n >= 0 ? `✅ ${abs} bajo presupuesto` : `🔴 ${abs} SOBRE presupuesto`;\n};\n\n// ── Líneas de servicios ejecutados (solo monto > 0) ──────────────────\nconst lineasServicios = serviciosEjecutados\n  .filter(r => r.monto > 0)\n  .map(r => `  • ${r.servicio}: ${fmt(r.monto)}`)\n  .join('\\n');\n\n// ── Conteo OTs abiertas por servicio ─────────────────────────────────\nconst conteoAbiertas = {};\notsAbiertas.forEach(o => {\n  conteoAbiertas[o.service_name] = (conteoAbiertas[o.service_name] || 0) + 1;\n});\nconst lineasAbiertas = Object.entries(conteoAbiertas)\n  .map(([svc, cnt]) => `  • ${svc}: ${cnt} OT${cnt !== 1 ? 's' : ''}`)\n  .join('\\n');\n\n// ── Fecha corte ──────────────────────────────────────────────────────\nconst fechaCorte = d.fecha_corte ?? mesActual;\nconst [yy, mm, dd] = fechaCorte.split('-');\nconst fechaLabel = `${dd}/${mm}/${yy}`;\n\n// ── ID Slack de la persona a etiquetar ──────────────────────────────\n// Cómo encontrarlo: en Slack, click en el perfil de la persona → \"...\" → \"Copiar ID de miembro\"\nconst SLACK_USER_ID = 'U0703VCP42U';\n\n// ── Mensaje final ─────────────────────────────────────────────────────\nconst texto = [\n  `<@${SLACK_USER_ID}> buenos días 👋`,\n  '',\n  `📊 *OPEX Activación — ${d.mes_label_actual}*`,\n  `📅 Datos al ${fechaLabel}`,\n  '',\n  `━━━━━━━━━━━━━━━━━━━━`,\n  `💰 *Presupuesto mes:* ${fmt(presupuesto)}`,\n  `✅ *Ejecutado:* ${fmt(totalEjecutado)} _(${pctEjecutado}% del presupuesto)_`,\n  `🔮 *Forecast OTs abiertas:* ${fmt(totalForecast)}`,\n  `📈 *Total proyectado:* ${fmt(totalProyectado)} _(${pctForecast}% del presupuesto)_`,\n  `⚡ *Desviación:* ${fmtDes(desviacion)}`,\n  `━━━━━━━━━━━━━━━━━━━━`,\n  '',\n  ...(lineasServicios ? ['*Ejecutado por servicio:*', lineasServicios, ''] : []),\n  ...(lineasAbiertas ? [`*OTs abiertas (${otsAbiertas.length}):*`, lineasAbiertas, ''] : []),\n  `_🔗 <https://hernanmanjarres-cmyk.github.io/dash_opex_act/|Ver dashboard completo →>_`\n].join('\\n');\n\nreturn [{ json: { texto } }];\n"
+      },
+      "id": "compute-kpis",
+      "name": "Calcular KPIs y armar mensaje",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://slack.com/api/chat.postMessage",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"channel\": \"#REEMPLAZA_CON_TU_CANAL\",\n  \"text\": {{ JSON.stringify($json.texto) }},\n  \"mrkdwn\": true\n}",
+        "options": {}
+      },
+      "id": "post-slack",
+      "name": "POST Slack chat.postMessage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Schedule — 7:00am COT L-V": {
+      "main": [[{ "node": "GET data.json (GitHub Pages)", "type": "main", "index": 0 }]]
+    },
+    "GET data.json (GitHub Pages)": {
+      "main": [[{ "node": "Calcular KPIs y armar mensaje", "type": "main", "index": 0 }]]
+    },
+    "Calcular KPIs y armar mensaje": {
+      "main": [[{ "node": "POST Slack chat.postMessage", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,36 @@
+name: Refresh Dashboard OPEX
+
+on:
+  schedule:
+    # Cada 3 horas en horario laboral Colombia (UTC-5): 7am, 10am, 1pm, 4pm
+    - cron: '0 12,15,18,21 * * 1-5'
+  workflow_dispatch:  # permite lanzarlo manualmente desde GitHub
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout rama del dashboard
+        uses: actions/checkout@v4
+        with:
+          ref: feature/dashboard-opex-activacion
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generar data.json e index.html
+        env:
+          METABASE_API_KEY: ${{ secrets.METABASE_API_KEY }}
+        run: python3 dashboard/generate_data.py
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dashboard/data.json dashboard/index.html
+          git diff --staged --quiet && echo "Sin cambios, nada que commitear." || \
+            (git commit -m "chore: refresh dashboard $(date -u '+%Y-%m-%d %H:%M UTC')" && git push)
