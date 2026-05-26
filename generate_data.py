@@ -88,9 +88,23 @@ SERVICE_NAME_TO_ID = {
 
 # ── Construcción del JSON ────────────────────────────────────────────────
 def build_ejecutado_by_month():
-    """Toma la card 71645 y devuelve { anio_mes: [{servicio, service_type_id, monto}, ...] }."""
-    resp = run_card(CARD_EJECUTADO)
-    rows = rows_from(resp)
+    """Ejecutado por servicio y mes directo desde SQL (consistente con build_ots_ejecutadas)."""
+    sql = """
+SELECT v.service_name,
+       to_char(v.fecha_visita, 'YYYY-MM') AS anio_mes,
+       ROUND(SUM(oc.service_cost + oc.material_cost + oc.transport_cost + oc.other_cost)) AS monto
+FROM operations.visitas_general v
+JOIN operations.opex_costs_general oc ON oc.visit_id::text = v.id::text
+WHERE v.fecha_visita >= (date_trunc('month', CURRENT_DATE) - INTERVAL '11 months')
+  AND v.fecha_visita < date_trunc('month', CURRENT_DATE) + INTERVAL '1 month'
+  AND v.service_type_id IN ('VIPE','INST','NORM','LEGA','PREV','REQA','SUCA','VEXT')
+  AND v.electrician_status_id IN ('CLOSURE_SUCCESSFUL','CLOSURE_FAILED','CLOSURE_CANCELED')
+  AND (oc.is_bia = false OR oc.is_bia IS NULL)
+  AND COALESCE(oc.status,'accepted') IN ('accepted','expired','approval')
+GROUP BY 1, 2
+ORDER BY 2, 1
+""".strip()
+    rows = rows_from(run_sql(DB_GOLD, sql))
     out = {}
     for r in rows:
         svc_name = r.get("service_name")
@@ -100,7 +114,7 @@ def build_ejecutado_by_month():
         out.setdefault(am, []).append({
             "servicio": svc_name,
             "service_type_id": SERVICE_NAME_TO_ID[svc_name],
-            "monto": int(r.get("Sum of costo_total_ot ($)") or 0),
+            "monto": int(r.get("monto") or 0),
         })
     return out
 

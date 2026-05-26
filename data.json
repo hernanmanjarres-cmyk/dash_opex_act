@@ -4,58 +4,308 @@
   "anio_mes_actual": "2026-05",
   "meta_default": 21000000,
   "ejecutado_por_servicio_by_month": {
-    "2026-04": [
+    "2025-06": [
       {
         "servicio": "Instalación",
         "service_type_id": "INST",
-        "monto": 0
+        "monto": 100428831
       },
       {
         "servicio": "Legalización",
         "service_type_id": "LEGA",
-        "monto": 0
-      },
-      {
-        "servicio": "Normalización de medida",
-        "service_type_id": "NORM",
-        "monto": 0
-      },
-      {
-        "servicio": "Revisión por QA",
-        "service_type_id": "REQA",
-        "monto": 0
+        "monto": 5201260
       },
       {
         "servicio": "Visita previa",
         "service_type_id": "VIPE",
-        "monto": 0
+        "monto": 24994229
+      }
+    ],
+    "2025-07": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 112055617
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 3928122
+      },
+      {
+        "servicio": "Verificación externa",
+        "service_type_id": "VEXT",
+        "monto": 350000
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 926400
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 39340523
+      }
+    ],
+    "2025-08": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 88791242
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 10948500
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 10929503
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 85000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 33948506
+      }
+    ],
+    "2025-09": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 177753637
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 10031846
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 5794622
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 1409000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 44682295
+      }
+    ],
+    "2025-10": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 84063879
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 11492620
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 3708960
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 485000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 20008460
+      }
+    ],
+    "2025-11": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 100121413
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 7512288
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 1700700
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 250000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 18064206
+      }
+    ],
+    "2025-12": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 115864693
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 5922299
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 4287960
+      },
+      {
+        "servicio": "Verificación externa",
+        "service_type_id": "VEXT",
+        "monto": 280000
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 140000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 14437758
+      }
+    ],
+    "2026-01": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 111135683
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 3202210
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 2707950
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 2323088
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 10289686
+      }
+    ],
+    "2026-02": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 175271181
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 1150000
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 17609818
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 1510600
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 8575600
+      }
+    ],
+    "2026-03": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 69594398
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 4782200
+      },
+      {
+        "servicio": "Revisión por QA",
+        "service_type_id": "REQA",
+        "monto": 3516600
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 1684400
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 10116009
+      }
+    ],
+    "2026-04": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 46243312
+      },
+      {
+        "servicio": "Legalización",
+        "service_type_id": "LEGA",
+        "monto": 1254000
+      },
+      {
+        "servicio": "Visita previa",
+        "service_type_id": "VIPE",
+        "monto": 6082500
       }
     ],
     "2026-05": [
       {
         "servicio": "Instalación",
         "service_type_id": "INST",
-        "monto": 0
-      },
-      {
-        "servicio": "Legalización",
-        "service_type_id": "LEGA",
-        "monto": 0
-      },
-      {
-        "servicio": "Normalización de medida",
-        "service_type_id": "NORM",
-        "monto": 0
+        "monto": 7993050
       },
       {
         "servicio": "Verificación externa",
         "service_type_id": "VEXT",
-        "monto": 0
+        "monto": 230000
+      },
+      {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 321600
       },
       {
         "servicio": "Visita previa",
         "service_type_id": "VIPE",
-        "monto": 0
+        "monto": 1232500
       }
     ]
   },
@@ -331,7 +581,7 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO0800006864",
       "service_type_id": "VIPE",
-      "electrician_status_id": "IN_ADDRESS",
+      "electrician_status_id": "INIT_FORM",
       "operador_de_red": "AIRE CARIBE_SOL",
       "tipo_de_medida": "Directa",
       "contratista": "BIA",
@@ -1030,7 +1280,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-05-26T13:49:30-05:00",
+  "generated_at": "2026-05-26T13:55:42-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
