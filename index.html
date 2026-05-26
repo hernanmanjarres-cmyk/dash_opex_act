@@ -1152,9 +1152,11 @@
     return (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
   }
   function acompanamientoDeOt(ot) {
-    if (ot.service_type_id !== 'INST' && ot.service_type_id !== 'NORM') return 0;
     const ad = ADICIONALES[ot.codigo_ot] || {};
+    // Override manual tiene prioridad para cualquier servicio
     if (ad.acompanamiento != null) return Number(ad.acompanamiento);
+    // Sin override: INST/NORM llevan la tarifa global; los demás son 0
+    if (ot.service_type_id !== 'INST' && ot.service_type_id !== 'NORM') return 0;
     return DATA.tarifa_acompanamiento || 0;
   }
 
@@ -1289,12 +1291,14 @@
   }
 
   // Construye un input editable. field = 'monto' | 'descargo' | 'acompanamiento'.
-  // Para INST/NORM: input editable con tarifa por defecto.
-  // Para otros servicios: muestra $0 estático (no aplica descargo/acomp, pero se ve explícito).
+  // Descargo: solo INST/NORM (cargo OR por corte de energía). Otros muestran $0 fijo.
+  // Acompañamiento: editable para TODOS los servicios.
+  //   - INST/NORM: placeholder = tarifa global (360k por defecto)
+  //   - Otros: placeholder = 0 (editable por si se necesita override puntual)
   function otInput(ot, field, currentVal, defaultVal, opts = {}) {
     const editable = canEdit();
     const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
-    if ((field === 'descargo' || field === 'acompanamiento') && !isInstNorm) {
+    if (field === 'descargo' && !isInstNorm) {
       return '<span style="color:var(--text-dim);font-size:12px">$0</span>';
     }
     // Si current es null/undefined, mostrar el default tarifario pero como placeholder (no value)
@@ -1322,7 +1326,8 @@
     tbody.innerHTML = otas.map(ot => {
       const ad = ADICIONALES[ot.codigo_ot] || {};
       const tarifaDesc = (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
-      const tarifaAcomp = DATA.tarifa_acompanamiento || 0;
+      const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
+      const tarifaAcomp = isInstNorm ? (DATA.tarifa_acompanamiento || 0) : 0;
       const total = totalDeOt(ot, ot.total_ot);
       return `<tr class="${ot.is_bia ? 'bia' : ''}">
         <td title="${ot.codigo_ot}" style="font-family:monospace;font-size:12px">${ot.ot_title || (ot.codigo_ot ? ot.codigo_ot.slice(0, 8) + '…' : '-')}</td>
@@ -1360,7 +1365,8 @@
     tbody.innerHTML = otas.map(ot => {
       const ad = ADICIONALES[ot.codigo_ot] || {};
       const tarifaDesc = (DATA.tarifas_descargo_por_or || {})[ot.operador_de_red] || 0;
-      const tarifaAcomp = DATA.tarifa_acompanamiento || 0;
+      const isInstNorm = ot.service_type_id === 'INST' || ot.service_type_id === 'NORM';
+      const tarifaAcomp = isInstNorm ? (DATA.tarifa_acompanamiento || 0) : 0;
       const total = totalDeOt(ot, ot.costo_real);
       return `<tr class="${ot.is_bia ? 'bia' : ''}">
         <td title="${ot.codigo_ot}" style="font-family:monospace;font-size:12px">${ot.ot_title || (ot.codigo_ot ? ot.codigo_ot.slice(0, 8) + '…' : '-')}</td>
