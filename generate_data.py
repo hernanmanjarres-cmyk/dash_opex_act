@@ -157,7 +157,7 @@ base_hist AS (
     AND v.service_type_id IN ('VIPE','INST','NORM','LEGA','PREV','REQA','SUCA','VEXT')
     AND v.electrician_status_id = 'CLOSURE_SUCCESSFUL'
     AND oc.service_cost > 0 AND (oc.is_bia=false OR oc.is_bia IS NULL)
-    AND COALESCE(oc.status,'accepted')='accepted'
+    AND COALESCE(oc.status,'accepted') IN ('accepted','expired')
 ),
 hist_l1 AS (
   SELECT operador_de_red, service_type_id,
@@ -226,7 +226,7 @@ SELECT v.id::text AS codigo_ot,
 FROM operations.visitas_general v
 LEFT JOIN operations.opex_costs_general oc ON oc.visit_id::text = v.id::text
   AND (oc.is_bia = false OR oc.is_bia IS NULL)
-  AND COALESCE(oc.status, 'accepted') = 'accepted'
+  AND COALESCE(oc.status, 'accepted') IN ('accepted','expired')
 LEFT JOIN operations.hubspot_general h ON h.codigo_bia = v.internal_bia_code
 WHERE v.fecha_visita >= date_trunc('month', CURRENT_DATE)
   AND v.fecha_visita < date_trunc('month', CURRENT_DATE) + INTERVAL '1 month'
