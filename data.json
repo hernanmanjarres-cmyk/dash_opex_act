@@ -83,7 +83,7 @@
       },
       "ENEL CUNDINAMARCA": {
         "INST": 1,
-        "VIPE": 2
+        "VIPE": 3
       },
       "EPM ANTIOQUIA": {
         "VIPE": 3
@@ -269,6 +269,44 @@
       "total_ot": 426250.0
     },
     {
+      "codigo_ot": "14286a95-ee81-4f2e-bd19-a1c7cdf0d2cd",
+      "ot_title": "PREV_0_1356744259_1",
+      "service_name": "Visita pre-venta",
+      "codigo_bia": "0",
+      "service_type_id": "PREV",
+      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "operador_de_red": null,
+      "tipo_de_medida": null,
+      "contratista": null,
+      "fecha_programada": "2026-05-27",
+      "mes_id": "2026-05",
+      "is_bia": null,
+      "servicio": 250000.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 99604,
+      "total_ot": 349604.0
+    },
+    {
+      "codigo_ot": "8d8fb4c9-6d69-43ee-9265-0e7ec99867db",
+      "ot_title": "PREV_0_1356738207_1",
+      "service_name": "Visita pre-venta",
+      "codigo_bia": "0",
+      "service_type_id": "PREV",
+      "electrician_status_id": "ASSIGNED",
+      "operador_de_red": null,
+      "tipo_de_medida": null,
+      "contratista": "BIA",
+      "fecha_programada": "2026-05-26",
+      "mes_id": "2026-05",
+      "is_bia": true,
+      "servicio": 0.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 99604,
+      "total_ot": 99604.0
+    },
+    {
       "codigo_ot": "5c944201-57ba-4a15-887c-17eae5337d1d",
       "ot_title": "VIPE_46315_CF3274",
       "service_name": "Visita previa",
@@ -293,7 +331,7 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO0800006864",
       "service_type_id": "VIPE",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "IN_ADDRESS",
       "operador_de_red": "AIRE CARIBE_SOL",
       "tipo_de_medida": "Directa",
       "contratista": "BIA",
@@ -305,25 +343,6 @@
       "adicionales": 0.0,
       "transporte": 91334,
       "total_ot": 91334.0
-    },
-    {
-      "codigo_ot": "e269a8b0-158d-42bf-9fb0-30be87624c13",
-      "ot_title": "VIPE_44006_CDE862",
-      "service_name": "Visita previa",
-      "codigo_bia": "CO1100006717",
-      "service_type_id": "VIPE",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "BIA",
-      "fecha_programada": "2026-05-26",
-      "mes_id": "2026-05",
-      "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 44835,
-      "total_ot": 44835.0
     },
     {
       "codigo_ot": "5b7f019d-83af-4d04-87ff-af216abb8f85",
@@ -365,6 +384,21 @@
     }
   ],
   "ots_ejecutadas": [
+    {
+      "codigo_ot": "57bb30d0-959a-478f-b41e-2487669bd728",
+      "ot_title": "INST_44705_766CD5",
+      "service_name": "Instalación",
+      "codigo_bia": "CO0800006811",
+      "service_type_id": "INST",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "AIRE CARIBE_SOL",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "GMAS",
+      "fecha_visita": "2026-05-19 08:00:00",
+      "mes_id": "2026-05",
+      "is_bia": false,
+      "costo_real": 7467250
+    },
     {
       "codigo_ot": "87cc2cab-4811-4fca-a5c4-58d8e1c619f1",
       "ot_title": "NORM_39508_B52C32",
@@ -816,21 +850,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "57bb30d0-959a-478f-b41e-2487669bd728",
-      "ot_title": "INST_44705_766CD5",
-      "service_name": "Instalación",
-      "codigo_bia": "CO0800006811",
-      "service_type_id": "INST",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "GMAS",
-      "fecha_visita": "2026-05-19 08:00:00",
-      "mes_id": "2026-05",
-      "is_bia": false,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "4008df48-73b5-4a80-a527-6d02b7ffc49d",
       "ot_title": "PREV_0_1353515480_1",
       "service_name": "Visita pre-venta",
@@ -856,6 +875,21 @@
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
       "fecha_visita": "2026-05-22 10:00:00",
+      "mes_id": "2026-05",
+      "is_bia": true,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "e269a8b0-158d-42bf-9fb0-30be87624c13",
+      "ot_title": "VIPE_44006_CDE862",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO1100006717",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_visita": "2026-05-26 09:00:00",
       "mes_id": "2026-05",
       "is_bia": true,
       "costo_real": 0
@@ -996,7 +1030,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-05-26T12:33:08-05:00",
+  "generated_at": "2026-05-26T13:49:30-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
