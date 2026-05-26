@@ -2083,12 +2083,10 @@
   }
   function sumAdicionalesAbiertas() {
     return sum(otsAbiertasMes()
-      .filter(o => !o.is_bia)
       .map(o => ADICIONALES[o.codigo_ot]?.monto || 0));
   }
   function sumAdicionalesEjecutadas() {
     return sum(otsEjecutadasMes()
-      .filter(o => !o.is_bia)
       .map(o => ADICIONALES[o.codigo_ot]?.monto || 0));
   }
 
@@ -2265,7 +2263,7 @@
     const f = sum(otas.filter(o => !o.is_bia).map(baseAbiertoDeOt));
     const d = sum(otas.map(descargoDeOt));
     const ac = sum(otas.map(acompanamientoDeOt));
-    const ad = sum(otas.filter(o => !o.is_bia).map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
+    const ad = sum(otas.map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
     $('abiertas-forecast-total').textContent = fmtCOP(f);
     $('abiertas-descargo-total').textContent = fmtCOP(d);
     $('abiertas-acomp-total').textContent = fmtCOP(ac);
@@ -2343,7 +2341,7 @@
     const r  = sum(otas.filter(o => !o.is_bia).map(o => o.costo_real || 0));
     const d  = sum(otas.map(descargoDeOt));
     const ac = sum(otas.map(acompanamientoDeOt));
-    const ad = sum(otas.filter(o => !o.is_bia).map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
+    const ad = sum(otas.map(o => Number(ADICIONALES[o.codigo_ot]?.monto || 0)));
     const lbl = (filtroSvc || filtroEstado) ? 'Subtotal (filtro activo)' : 'Subtotal contratistas';
     if ($('ejec-subtotal-label')) $('ejec-subtotal-label').textContent = lbl;
     $('ejecutadas-real-total').textContent = fmtCOP(r);
