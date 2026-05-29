@@ -1600,7 +1600,7 @@
     </header>
 
     <div id="read-only-banner" class="read-only-banner" style="display:none">
-      🔒 Sos <strong>lector</strong>: podés ver todo pero no editar adicionales ni presupuesto. Pedí permiso de <em>usuario</em> a un super_admin si necesitás cargar gastos.
+      🔒 Sos <strong>lector</strong>: podés ver todo pero no editar. Pedí permiso de <em>usuario</em> a un super_admin si necesitás cargar o modificar datos.
     </div>
 
     <nav class="tabs">
@@ -1829,7 +1829,7 @@
             <input type="email" id="new-user-email" placeholder="usuario@bia.app" required>
             <select id="new-user-role">
               <option value="lector">lector (solo ver)</option>
-              <option value="usuario">usuario (ver + editar adicionales)</option>
+              <option value="usuario">usuario (ver + editar OTs)</option>
               <option value="super_admin">super_admin (todo + administrar)</option>
             </select>
             <button type="submit" class="btn">Agregar</button>
@@ -2090,8 +2090,7 @@
   // field: 'monto' | 'descargo' | 'acompanamiento' | 'forecast_override' | 'usuario_asume_costo'
   // value: string del input o boolean para checkboxes. '' / null → null (vuelve al default)
   async function setOtField(otId, field, value) {
-    console.log('[setOtField]', { otId, field, value, canEdit: canEdit(), sb: !!sb });
-    if (!canEdit()) { console.warn('[setOtField] bloqueado: sin permisos de edición'); return; }
+    if (!canEdit()) return;
     const isBool = field === 'usuario_asume_costo';
     const parsed = isBool
       ? (value ? true : null)
@@ -2109,10 +2108,7 @@
                  && updated.forecast_override == null
                  && !updated.usuario_asume_costo;
 
-    console.log('[setOtField] parsed:', parsed, '| isEmpty:', isEmpty, '| updated:', updated);
-
     if (!sb) {
-      console.log('[setOtField] modo offline → localStorage');
       if (isEmpty) delete ADICIONALES[otId];
       else ADICIONALES[otId] = { ...updated, updated_by: 'local', updated_at: new Date().toISOString() };
       lsSet(STORAGE_ADIC_LOCAL, ADICIONALES);
@@ -2121,9 +2117,8 @@
 
     if (isEmpty) {
       const { error } = await sb.from('dashboard_adicionales').delete().eq('ot_id', otId);
-      if (error) { console.error('[setOtField] error delete:', error); alert('Error borrando: ' + error.message); return; }
+      if (error) { alert('Error borrando: ' + error.message); return; }
       delete ADICIONALES[otId];
-      console.log('[setOtField] registro borrado');
     } else {
       const row = {
         ot_id: otId,
@@ -2134,10 +2129,8 @@
         usuario_asume_costo: updated.usuario_asume_costo || false,
         updated_by: MY_EMAIL,
       };
-      console.log('[setOtField] upsert row:', row);
       const { data, error } = await sb.from('dashboard_adicionales').upsert(row).select().single();
-      if (error) { console.error('[setOtField] error upsert:', error); alert('Error guardando: ' + error.message); return; }
-      console.log('[setOtField] upsert OK, data:', data);
+      if (error) { alert('Error guardando: ' + error.message); return; }
       ADICIONALES[otId] = data;
     }
   }
@@ -2499,7 +2492,6 @@
         clearTimeout(timer);
         timer = setTimeout(async () => {
           await setOtField(e.target.dataset.ot, e.target.dataset.field, e.target.value);
-          console.log('[bindOtInputs] llamando render(), ADICIONALES[ot]:', ADICIONALES[e.target.dataset.ot]);
           render();
         }, 500);
       });
