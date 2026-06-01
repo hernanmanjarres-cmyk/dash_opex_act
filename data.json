@@ -301,7 +301,13 @@
     "ESSA SANTANDER": 1000000
   },
   "tarifa_acompanamiento": 360000,
-  "conteo_inst_norm_ejecutadas_por_or_by_month": {},
+  "conteo_inst_norm_ejecutadas_por_or_by_month": {
+    "2026-06": {
+      "AIRE CARIBE_SOL": {
+        "VIPE": 1
+      }
+    }
+  },
   "ots_abiertas": [
     {
       "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
@@ -686,6 +692,21 @@
   ],
   "ots_ejecutadas": [
     {
+      "codigo_ot": "a51ef9aa-7f51-4e9d-891a-3ef4ad46d526",
+      "ot_title": "VIPE_45595_8378F4",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO0800006780",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "AIRE CARIBE_SOL",
+      "tipo_de_medida": "Directa",
+      "contratista": "EQUIPO PRUEBAS - IS_BIA",
+      "fecha_visita": "2026-06-02 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "52fa39dc-505f-446d-a891-0b1956d4d2bb",
       "ot_title": "PREV_0_1358435208_1",
       "service_name": "Visita pre-venta",
@@ -716,7 +737,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-01T12:45:12-05:00",
+  "generated_at": "2026-06-01T16:35:52-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
