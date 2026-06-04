@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-03",
+  "fecha_corte": "2026-06-04",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -473,7 +473,7 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006887",
       "service_type_id": "VIPE",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Directa",
       "contratista": "BIA",
@@ -506,10 +506,10 @@
       "total_ot": 49321.0
     },
     {
-      "codigo_ot": "e17be944-46bb-410f-84b7-08f48e73b826",
-      "ot_title": "LEGA_39581_5DB86E",
+      "codigo_ot": "5b7f019d-83af-4d04-87ff-af216abb8f85",
+      "ot_title": "LEGA_39580_2014D9",
       "service_name": "Legalización",
-      "codigo_bia": "CO0100006464",
+      "codigo_bia": "CO0100006465",
       "service_type_id": "LEGA",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -525,10 +525,10 @@
       "total_ot": 19565.0
     },
     {
-      "codigo_ot": "5b7f019d-83af-4d04-87ff-af216abb8f85",
-      "ot_title": "LEGA_39580_2014D9",
+      "codigo_ot": "e17be944-46bb-410f-84b7-08f48e73b826",
+      "ot_title": "LEGA_39581_5DB86E",
       "service_name": "Legalización",
-      "codigo_bia": "CO0100006465",
+      "codigo_bia": "CO0100006464",
       "service_type_id": "LEGA",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -711,7 +711,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-03T18:09:01-05:00",
+  "generated_at": "2026-06-04T10:21:02-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
