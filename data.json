@@ -373,10 +373,10 @@
       "total_ot": 1584478.0
     },
     {
-      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
-      "ot_title": "NORM_39580_8EC285",
+      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
+      "ot_title": "NORM_39581_ADD0A5",
       "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006465",
+      "codigo_bia": "CO0100006464",
       "service_type_id": "NORM",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -392,10 +392,10 @@
       "total_ot": 426250.0
     },
     {
-      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
-      "ot_title": "NORM_39581_ADD0A5",
+      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
+      "ot_title": "NORM_39580_8EC285",
       "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006464",
+      "codigo_bia": "CO0100006465",
       "service_type_id": "NORM",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -473,7 +473,7 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006887",
       "service_type_id": "VIPE",
-      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
+      "electrician_status_id": "COMPLETED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Directa",
       "contratista": "BIA",
@@ -711,7 +711,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-04T10:21:02-05:00",
+  "generated_at": "2026-06-04T15:08:59-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
