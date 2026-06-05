@@ -311,7 +311,7 @@
         "NORM": 1
       },
       "ENEL CUNDINAMARCA": {
-        "VIPE": 8
+        "VIPE": 9
       }
     }
   },
@@ -355,10 +355,10 @@
       "total_ot": 1584478.0
     },
     {
-      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
-      "ot_title": "NORM_39581_ADD0A5",
+      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
+      "ot_title": "NORM_39580_8EC285",
       "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006464",
+      "codigo_bia": "CO0100006465",
       "service_type_id": "NORM",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -374,10 +374,10 @@
       "total_ot": 426250.0
     },
     {
-      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
-      "ot_title": "NORM_39580_8EC285",
+      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
+      "ot_title": "NORM_39581_ADD0A5",
       "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006465",
+      "codigo_bia": "CO0100006464",
       "service_type_id": "NORM",
       "electrician_status_id": "ASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
@@ -469,25 +469,6 @@
       "total_ot": 166311.0
     },
     {
-      "codigo_ot": "af615ee5-26c1-4770-8d5f-8f14c9ec3269",
-      "ot_title": "VIPE_45543_44C39A",
-      "service_name": "Visita previa",
-      "codigo_bia": "CO2500006833",
-      "service_type_id": "VIPE",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Semidirecta",
-      "contratista": "BIA",
-      "fecha_programada": "2026-06-05",
-      "mes_id": "2026-06",
-      "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 49321,
-      "total_ot": 49321.0
-    },
-    {
       "codigo_ot": "5b7f019d-83af-4d04-87ff-af216abb8f85",
       "ot_title": "LEGA_39580_2014D9",
       "service_name": "Legalización",
@@ -573,21 +554,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
-      "ot_title": "NORM_38984_9E7B68",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0500006428",
-      "service_type_id": "NORM",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "GMAS",
-      "fecha_visita": "2026-06-02 08:00:00",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "dcd8eb29-c738-4ab7-b5e6-87b731837fb0",
       "ot_title": "VIPE_44774_033750",
       "service_name": "Visita previa",
@@ -600,6 +566,21 @@
       "fecha_visita": "2026-06-02 08:00:00",
       "mes_id": "2026-06",
       "is_bia": true,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
+      "ot_title": "NORM_38984_9E7B68",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0500006428",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "AIRE CARIBE_SOL",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "GMAS",
+      "fecha_visita": "2026-06-02 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
       "costo_real": 0
     },
     {
@@ -693,6 +674,21 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "af615ee5-26c1-4770-8d5f-8f14c9ec3269",
+      "ot_title": "VIPE_45543_44C39A",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO2500006833",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Semidirecta",
+      "contratista": "BIA",
+      "fecha_visita": "2026-06-05 10:00:00",
+      "mes_id": "2026-06",
+      "is_bia": true,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "52fa39dc-505f-446d-a891-0b1956d4d2bb",
       "ot_title": "PREV_0_1358435208_1",
       "service_name": "Visita pre-venta",
@@ -723,7 +719,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-05T14:58:33-05:00",
+  "generated_at": "2026-06-05T17:34:51-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
