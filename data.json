@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-05",
+  "fecha_corte": "2026-06-08",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -310,6 +310,9 @@
       "CELSIA_VALLE VALLE": {
         "NORM": 1
       },
+      "EMCALI CALI": {
+        "VIPE": 1
+      },
       "ENEL CUNDINAMARCA": {
         "VIPE": 9
       }
@@ -322,7 +325,7 @@
       "service_name": "Instalación",
       "codigo_bia": "CO0800006843",
       "service_type_id": "INST",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "AIRE CARIBE_SOL",
       "tipo_de_medida": "Indirecta",
       "contratista": "GMAS",
@@ -360,26 +363,7 @@
       "service_name": "Normalización medida",
       "codigo_bia": "CO0100006465",
       "service_type_id": "NORM",
-      "electrician_status_id": "ASSIGNED",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "BIA",
-      "fecha_programada": "2026-06-07",
-      "mes_id": "2026-06",
-      "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 140000.0,
-      "adicionales": 230000.0,
-      "transporte": 56250,
-      "total_ot": 426250.0
-    },
-    {
-      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
-      "ot_title": "NORM_39581_ADD0A5",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006464",
-      "service_type_id": "NORM",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "COMPLETED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -448,25 +432,6 @@
       "adicionales": 230000.0,
       "transporte": 56250,
       "total_ot": 426250.0
-    },
-    {
-      "codigo_ot": "d06e1046-d9dd-4def-b10c-0007804dfc3b",
-      "ot_title": "VIPE_47472_E112C9",
-      "service_name": "Visita previa",
-      "codigo_bia": "CO7600006927",
-      "service_type_id": "VIPE",
-      "electrician_status_id": "ASSIGNED",
-      "operador_de_red": "EMCALI CALI",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "ELECPROYECTOS",
-      "fecha_programada": "2026-06-06",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "servicio": 147600.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 18711,
-      "total_ot": 166311.0
     },
     {
       "codigo_ot": "5b7f019d-83af-4d04-87ff-af216abb8f85",
@@ -539,15 +504,15 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "a51ef9aa-7f51-4e9d-891a-3ef4ad46d526",
-      "ot_title": "VIPE_45595_8378F4",
-      "service_name": "Visita previa",
-      "codigo_bia": "CO0800006780",
-      "service_type_id": "VIPE",
+      "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
+      "ot_title": "NORM_38984_9E7B68",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0500006428",
+      "service_type_id": "NORM",
       "electrician_status_id": "CLOSURE_SUCCESSFUL",
       "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Directa",
-      "contratista": "EQUIPO PRUEBAS - IS_BIA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "GMAS",
       "fecha_visita": "2026-06-02 08:00:00",
       "mes_id": "2026-06",
       "is_bia": false,
@@ -569,15 +534,15 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
-      "ot_title": "NORM_38984_9E7B68",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0500006428",
-      "service_type_id": "NORM",
+      "codigo_ot": "a51ef9aa-7f51-4e9d-891a-3ef4ad46d526",
+      "ot_title": "VIPE_45595_8378F4",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO0800006780",
+      "service_type_id": "VIPE",
       "electrician_status_id": "CLOSURE_SUCCESSFUL",
       "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "GMAS",
+      "tipo_de_medida": "Directa",
+      "contratista": "EQUIPO PRUEBAS - IS_BIA",
       "fecha_visita": "2026-06-02 08:00:00",
       "mes_id": "2026-06",
       "is_bia": false,
@@ -689,6 +654,36 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "d06e1046-d9dd-4def-b10c-0007804dfc3b",
+      "ot_title": "VIPE_47472_E112C9",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO7600006927",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "EMCALI CALI",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "ELECPROYECTOS",
+      "fecha_visita": "2026-06-06 10:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
+      "ot_title": "NORM_39581_ADD0A5",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0100006464",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_FAILED",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_visita": "2026-06-07 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": true,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "52fa39dc-505f-446d-a891-0b1956d4d2bb",
       "ot_title": "PREV_0_1358435208_1",
       "service_name": "Visita pre-venta",
@@ -719,7 +714,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-05T17:34:51-05:00",
+  "generated_at": "2026-06-08T10:57:23-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
