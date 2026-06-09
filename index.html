@@ -456,6 +456,7 @@
         "VIPE": 1
       },
       "ENEL CUNDINAMARCA": {
+        "NORM": 1,
         "VIPE": 9
       }
     }
@@ -498,25 +499,6 @@
       "adicionales": 577000.0,
       "transporte": 0,
       "total_ot": 1584478.0
-    },
-    {
-      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
-      "ot_title": "NORM_39580_8EC285",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0100006465",
-      "service_type_id": "NORM",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "BIA",
-      "fecha_programada": "2026-06-07",
-      "mes_id": "2026-06",
-      "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 140000.0,
-      "adicionales": 230000.0,
-      "transporte": 56250,
-      "total_ot": 426250.0
     },
     {
       "codigo_ot": "f498f1b5-9089-4d6c-bf30-ffc05dbbd615",
@@ -581,7 +563,7 @@
       "service_name": "Legalización",
       "codigo_bia": "CO0100006465",
       "service_type_id": "LEGA",
-      "electrician_status_id": "IN_ROUTE",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -811,6 +793,21 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "f9bcf441-cf50-411f-8721-3bbfb244c24b",
+      "ot_title": "NORM_39580_8EC285",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0100006465",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_visita": "2026-06-07 10:00:00",
+      "mes_id": "2026-06",
+      "is_bia": true,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
       "ot_title": "NORM_39581_ADD0A5",
       "service_name": "Normalización medida",
@@ -856,7 +853,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-09T09:56:48-05:00",
+  "generated_at": "2026-06-09T12:26:46-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
