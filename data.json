@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-08",
+  "fecha_corte": "2026-06-09",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -439,7 +439,7 @@
       "service_name": "Legalización",
       "codigo_bia": "CO0100006465",
       "service_type_id": "LEGA",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "IN_ROUTE",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -458,7 +458,7 @@
       "service_name": "Legalización",
       "codigo_bia": "CO0100006464",
       "service_type_id": "LEGA",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -714,7 +714,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-08T17:41:01-05:00",
+  "generated_at": "2026-06-09T09:56:48-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
