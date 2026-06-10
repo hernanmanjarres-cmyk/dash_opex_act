@@ -304,6 +304,7 @@
   "conteo_inst_norm_ejecutadas_por_or_by_month": {
     "2026-06": {
       "AIRE CARIBE_SOL": {
+        "INST": 1,
         "NORM": 1,
         "VIPE": 1
       },
@@ -321,25 +322,6 @@
     }
   },
   "ots_abiertas": [
-    {
-      "codigo_ot": "1279fbf4-1974-43a3-8b3f-fa0e9e5f8e16",
-      "ot_title": "INST_45665_87ACB5",
-      "service_name": "Instalación",
-      "codigo_bia": "CO0800006843",
-      "service_type_id": "INST",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "GMAS",
-      "fecha_programada": "2026-06-06",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "servicio": 5928000.0,
-      "materiales": 807807.0,
-      "adicionales": 1650000.0,
-      "transporte": 445270,
-      "total_ot": 8831077.0
-    },
     {
       "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
       "ot_title": "NORM_32749_DF5858",
@@ -599,6 +581,21 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "1279fbf4-1974-43a3-8b3f-fa0e9e5f8e16",
+      "ot_title": "INST_45665_87ACB5",
+      "service_name": "Instalación",
+      "codigo_bia": "CO0800006843",
+      "service_type_id": "INST",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "AIRE CARIBE_SOL",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "GMAS",
+      "fecha_visita": "2026-06-06 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "d06e1046-d9dd-4def-b10c-0007804dfc3b",
       "ot_title": "VIPE_47472_E112C9",
       "service_name": "Visita previa",
@@ -704,7 +701,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-10T10:41:10-05:00",
+  "generated_at": "2026-06-10T15:33:39-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
