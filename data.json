@@ -323,6 +323,44 @@
   },
   "ots_abiertas": [
     {
+      "codigo_ot": "760e2efc-95e3-4de8-a123-91f220409432",
+      "ot_title": "INST_47472_CFB9F2",
+      "service_name": "Instalación",
+      "codigo_bia": "CO7600006927",
+      "service_type_id": "INST",
+      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "operador_de_red": "EMCALI CALI",
+      "tipo_de_medida": "Indirecta",
+      "contratista": null,
+      "fecha_programada": "2026-07-05",
+      "mes_id": "2026-07",
+      "is_bia": null,
+      "servicio": 1682932.0,
+      "materiales": 250000.0,
+      "adicionales": 180000.0,
+      "transporte": 697875,
+      "total_ot": 2810807.0
+    },
+    {
+      "codigo_ot": "e2ec4082-764c-4064-90d8-fb48dbb0d5f1",
+      "ot_title": "NORM_39856_046C66",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0100006484",
+      "service_type_id": "NORM",
+      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": null,
+      "fecha_programada": "2026-07-04",
+      "mes_id": "2026-07",
+      "is_bia": null,
+      "servicio": 2310000.0,
+      "materiales": 140000.0,
+      "adicionales": 230000.0,
+      "transporte": 56250,
+      "total_ot": 2736250.0
+    },
+    {
       "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
       "ot_title": "NORM_32749_DF5858",
       "service_name": "Normalización medida",
@@ -366,18 +404,37 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006956",
       "service_type_id": "VIPE",
-      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "electrician_status_id": "REASSIGNED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
-      "contratista": null,
+      "contratista": "BIA",
       "fecha_programada": "2026-06-25",
       "mes_id": "2026-06",
-      "is_bia": null,
-      "servicio": 85000.0,
+      "is_bia": true,
+      "servicio": 0.0,
       "materiales": 0.0,
       "adicionales": 0.0,
       "transporte": 49321,
-      "total_ot": 134321.0
+      "total_ot": 49321.0
+    },
+    {
+      "codigo_ot": "d59e66c9-1359-459a-82cd-7764a0f98683",
+      "ot_title": "LEGA_42355_EB1CAB",
+      "service_name": "Legalización",
+      "codigo_bia": "CO0800006631",
+      "service_type_id": "LEGA",
+      "electrician_status_id": "ASSIGNED",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_programada": "2026-06-25",
+      "mes_id": "2026-06",
+      "is_bia": true,
+      "servicio": 0.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 19565,
+      "total_ot": 19565.0
     }
   ],
   "ots_ejecutadas": [
@@ -712,7 +769,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-23T09:54:00-05:00",
+  "generated_at": "2026-06-23T17:15:59-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
