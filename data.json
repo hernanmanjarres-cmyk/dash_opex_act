@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-22",
+  "fecha_corte": "2026-06-23",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -328,7 +328,7 @@
       "service_name": "Normalización medida",
       "codigo_bia": "CO0800005332",
       "service_type_id": "NORM",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ESSA SANTANDER",
       "tipo_de_medida": "Semidirecta",
       "contratista": "SGE",
@@ -347,7 +347,7 @@
       "service_name": "Normalización medida",
       "codigo_bia": "CO0800006631",
       "service_type_id": "NORM",
-      "electrician_status_id": "REASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -359,6 +359,25 @@
       "adicionales": 230000.0,
       "transporte": 56250,
       "total_ot": 426250.0
+    },
+    {
+      "codigo_ot": "95aa57a5-e07e-48e1-8a3c-8a5012e9d740",
+      "ot_title": "VIPE_47507_C6C526",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO1100006956",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": null,
+      "fecha_programada": "2026-06-25",
+      "mes_id": "2026-06",
+      "is_bia": null,
+      "servicio": 85000.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 49321,
+      "total_ot": 134321.0
     }
   ],
   "ots_ejecutadas": [
@@ -693,7 +712,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-22T17:48:36-05:00",
+  "generated_at": "2026-06-23T09:54:00-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
