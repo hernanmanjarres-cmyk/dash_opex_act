@@ -141,7 +141,7 @@
   <!-- ▼▼▼ DATA EMBEBIDA — reemplazada por generate_data.py ▼▼▼ -->
 <script id="dashboard-data" type="application/json">
 {
-  "fecha_corte": "2026-06-23",
+  "fecha_corte": "2026-06-24",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -432,6 +432,13 @@
         "service_type_id": "VIPE",
         "monto": 1232500
       }
+    ],
+    "2026-06": [
+      {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 5763750
+      }
     ]
   },
   "tarifas_descargo_por_or": {
@@ -470,13 +477,13 @@
       "service_name": "Instalación",
       "codigo_bia": "CO7600006927",
       "service_type_id": "INST",
-      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "electrician_status_id": "CHANGE_CONTRACTOR",
       "operador_de_red": "EMCALI CALI",
       "tipo_de_medida": "Indirecta",
-      "contratista": null,
+      "contratista": "ELECPROYECTOS",
       "fecha_programada": "2026-07-05",
       "mes_id": "2026-07",
-      "is_bia": null,
+      "is_bia": false,
       "servicio": 1682932.0,
       "materiales": 250000.0,
       "adicionales": 180000.0,
@@ -527,7 +534,7 @@
       "service_name": "Normalización medida",
       "codigo_bia": "CO0800006631",
       "service_type_id": "NORM",
-      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
+      "electrician_status_id": "COMPLETED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -594,6 +601,21 @@
       "mes_id": "2026-06",
       "is_bia": false,
       "costo_real": 6143910
+    },
+    {
+      "codigo_ot": "1279fbf4-1974-43a3-8b3f-fa0e9e5f8e16",
+      "ot_title": "INST_45665_87ACB5",
+      "service_name": "Instalación",
+      "codigo_bia": "CO0800006843",
+      "service_type_id": "INST",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "AIRE CARIBE_SOL",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "GMAS",
+      "fecha_visita": "2026-06-06 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 5763750
     },
     {
       "codigo_ot": "d3fb6eb7-ee72-432d-a58a-edf542cc10a9",
@@ -761,21 +783,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "1279fbf4-1974-43a3-8b3f-fa0e9e5f8e16",
-      "ot_title": "INST_45665_87ACB5",
-      "service_name": "Instalación",
-      "codigo_bia": "CO0800006843",
-      "service_type_id": "INST",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "AIRE CARIBE_SOL",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "GMAS",
-      "fecha_visita": "2026-06-06 08:00:00",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "d06e1046-d9dd-4def-b10c-0007804dfc3b",
       "ot_title": "VIPE_47472_E112C9",
       "service_name": "Visita previa",
@@ -911,7 +918,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-23T17:15:59-05:00",
+  "generated_at": "2026-06-24T09:36:12-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
