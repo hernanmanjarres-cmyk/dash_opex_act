@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-24",
+  "fecha_corte": "2026-06-25",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -328,8 +328,11 @@
       },
       "ENEL CUNDINAMARCA": {
         "LEGA": 1,
-        "NORM": 1,
+        "NORM": 2,
         "VIPE": 9
+      },
+      "ESSA SANTANDER": {
+        "NORM": 1
       }
     }
   },
@@ -373,50 +376,12 @@
       "total_ot": 2736250.0
     },
     {
-      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
-      "ot_title": "NORM_32749_DF5858",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0800005332",
-      "service_type_id": "NORM",
-      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
-      "operador_de_red": "ESSA SANTANDER",
-      "tipo_de_medida": "Semidirecta",
-      "contratista": "SGE",
-      "fecha_programada": "2026-06-23",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "servicio": 887100.0,
-      "materiales": 120378.0,
-      "adicionales": 577000.0,
-      "transporte": 0,
-      "total_ot": 1584478.0
-    },
-    {
-      "codigo_ot": "22563d89-5704-44cb-bb4d-5e425f2031f9",
-      "ot_title": "NORM_42355_D9A1EB",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0800006631",
-      "service_type_id": "NORM",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Indirecta",
-      "contratista": "BIA",
-      "fecha_programada": "2026-06-23",
-      "mes_id": "2026-06",
-      "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 140000.0,
-      "adicionales": 230000.0,
-      "transporte": 56250,
-      "total_ot": 426250.0
-    },
-    {
       "codigo_ot": "95aa57a5-e07e-48e1-8a3c-8a5012e9d740",
       "ot_title": "VIPE_47507_C6C526",
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006956",
       "service_type_id": "VIPE",
-      "electrician_status_id": "REASSIGNED",
+      "electrician_status_id": "IN_ADDRESS",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -511,21 +476,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "dcd8eb29-c738-4ab7-b5e6-87b731837fb0",
-      "ot_title": "VIPE_44774_033750",
-      "service_name": "Visita previa",
-      "codigo_bia": "CO1100006801",
-      "service_type_id": "VIPE",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "ENEL CUNDINAMARCA",
-      "tipo_de_medida": "Directa",
-      "contratista": "BIA",
-      "fecha_visita": "2026-06-02 08:00:00",
-      "mes_id": "2026-06",
-      "is_bia": true,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "a51ef9aa-7f51-4e9d-891a-3ef4ad46d526",
       "ot_title": "VIPE_45595_8378F4",
       "service_name": "Visita previa",
@@ -538,6 +488,21 @@
       "fecha_visita": "2026-06-02 08:00:00",
       "mes_id": "2026-06",
       "is_bia": false,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "dcd8eb29-c738-4ab7-b5e6-87b731837fb0",
+      "ot_title": "VIPE_44774_033750",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO1100006801",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Directa",
+      "contratista": "BIA",
+      "fecha_visita": "2026-06-02 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": true,
       "costo_real": 0
     },
     {
@@ -691,6 +656,36 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
+      "ot_title": "NORM_32749_DF5858",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0800005332",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ESSA SANTANDER",
+      "tipo_de_medida": "Semidirecta",
+      "contratista": "SGE",
+      "fecha_visita": "2026-06-23 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "22563d89-5704-44cb-bb4d-5e425f2031f9",
+      "ot_title": "NORM_42355_D9A1EB",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0800006631",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_visita": "2026-06-23 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": true,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "d0830a5f-444f-4648-8dcc-3834a497cd70",
       "ot_title": "NORM_39581_ADD0A5",
       "service_name": "Normalización medida",
@@ -781,7 +776,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-24T17:19:41-05:00",
+  "generated_at": "2026-06-25T09:37:21-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
