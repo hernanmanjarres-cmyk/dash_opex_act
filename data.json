@@ -381,7 +381,7 @@
       "service_name": "Visita pre-venta",
       "codigo_bia": "0",
       "service_type_id": "PREV",
-      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
+      "electrician_status_id": "COMPLETED",
       "operador_de_red": null,
       "tipo_de_medida": null,
       "contratista": "ELECPROYECTOS",
@@ -787,7 +787,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-26T14:51:40-05:00",
+  "generated_at": "2026-06-26T17:16:17-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
