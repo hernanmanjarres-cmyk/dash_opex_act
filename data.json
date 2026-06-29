@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-06-26",
+  "fecha_corte": "2026-06-29",
   "mes_label_actual": "Junio 2026",
   "anio_mes_actual": "2026-06",
   "meta_default": 21000000,
@@ -333,6 +333,9 @@
       },
       "ESSA SANTANDER": {
         "NORM": 1
+      },
+      "Sin OR": {
+        "PREV": 1
       }
     }
   },
@@ -374,25 +377,6 @@
       "adicionales": 230000.0,
       "transporte": 56250,
       "total_ot": 2736250.0
-    },
-    {
-      "codigo_ot": "eb6f777a-98d5-4469-a2de-aa1a2202dd53",
-      "ot_title": "PREV_0_1396718378_1",
-      "service_name": "Visita pre-venta",
-      "codigo_bia": "0",
-      "service_type_id": "PREV",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": null,
-      "tipo_de_medida": null,
-      "contratista": "ELECPROYECTOS",
-      "fecha_programada": "2026-06-26",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "servicio": 250000.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 124419,
-      "total_ot": 374419.0
     }
   ],
   "ots_ejecutadas": [
@@ -637,21 +621,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
-      "ot_title": "NORM_32749_DF5858",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0800005332",
-      "service_type_id": "NORM",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "ESSA SANTANDER",
-      "tipo_de_medida": "Semidirecta",
-      "contratista": "SGE",
-      "fecha_visita": "2026-06-23 08:00:00",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "22563d89-5704-44cb-bb4d-5e425f2031f9",
       "ot_title": "NORM_42355_D9A1EB",
       "service_name": "Normalización medida",
@@ -667,6 +636,21 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
+      "ot_title": "NORM_32749_DF5858",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0800005332",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ESSA SANTANDER",
+      "tipo_de_medida": "Semidirecta",
+      "contratista": "SGE",
+      "fecha_visita": "2026-06-23 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "95aa57a5-e07e-48e1-8a3c-8a5012e9d740",
       "ot_title": "VIPE_47507_C6C526",
       "service_name": "Visita previa",
@@ -679,6 +663,21 @@
       "fecha_visita": "2026-06-25 09:30:00",
       "mes_id": "2026-06",
       "is_bia": true,
+      "costo_real": 0
+    },
+    {
+      "codigo_ot": "eb6f777a-98d5-4469-a2de-aa1a2202dd53",
+      "ot_title": "PREV_0_1396718378_1",
+      "service_name": "Visita pre-venta",
+      "codigo_bia": "0",
+      "service_type_id": "PREV",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": null,
+      "tipo_de_medida": null,
+      "contratista": "ELECPROYECTOS",
+      "fecha_visita": "2026-06-26 09:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
       "costo_real": 0
     },
     {
@@ -787,7 +786,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-26T17:16:17-05:00",
+  "generated_at": "2026-06-29T10:51:20-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
