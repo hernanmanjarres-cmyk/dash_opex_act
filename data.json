@@ -426,6 +426,21 @@
       "costo_real": 5269888
     },
     {
+      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
+      "ot_title": "NORM_32749_DF5858",
+      "service_name": "Normalización medida",
+      "codigo_bia": "CO0800005332",
+      "service_type_id": "NORM",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ESSA SANTANDER",
+      "tipo_de_medida": "Semidirecta",
+      "contratista": "SGE",
+      "fecha_visita": "2026-06-23 08:00:00",
+      "mes_id": "2026-06",
+      "is_bia": false,
+      "costo_real": 3886690
+    },
+    {
       "codigo_ot": "5088daa5-39d9-49d1-b4c5-c38852691549",
       "ot_title": "VIPE_44775_7C77C6",
       "service_name": "Visita previa",
@@ -636,21 +651,6 @@
       "costo_real": 0
     },
     {
-      "codigo_ot": "5b5a6f95-95a8-4b52-9c69-9ab9a5bc24e9",
-      "ot_title": "NORM_32749_DF5858",
-      "service_name": "Normalización medida",
-      "codigo_bia": "CO0800005332",
-      "service_type_id": "NORM",
-      "electrician_status_id": "CLOSURE_SUCCESSFUL",
-      "operador_de_red": "ESSA SANTANDER",
-      "tipo_de_medida": "Semidirecta",
-      "contratista": "SGE",
-      "fecha_visita": "2026-06-23 08:00:00",
-      "mes_id": "2026-06",
-      "is_bia": false,
-      "costo_real": 0
-    },
-    {
       "codigo_ot": "95aa57a5-e07e-48e1-8a3c-8a5012e9d740",
       "ot_title": "VIPE_47507_C6C526",
       "service_name": "Visita previa",
@@ -786,7 +786,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-06-30T09:23:57-05:00",
+  "generated_at": "2026-06-30T12:07:16-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
