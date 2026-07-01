@@ -271,6 +271,11 @@
         "monto": 5763750
       },
       {
+        "servicio": "Visita pre-venta",
+        "service_type_id": "PREV",
+        "monto": 721000
+      },
+      {
         "servicio": "Visita previa",
         "service_type_id": "VIPE",
         "monto": 0
@@ -344,7 +349,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-01T09:41:20-05:00",
+  "generated_at": "2026-07-01T12:19:20-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
