@@ -322,7 +322,7 @@
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
-      "fecha_programada": "2026-07-04",
+      "fecha_programada": "2026-07-05",
       "mes_id": "2026-07",
       "is_bia": true,
       "servicio": 0.0,
@@ -349,7 +349,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-01T12:19:20-05:00",
+  "generated_at": "2026-07-01T17:18:56-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
