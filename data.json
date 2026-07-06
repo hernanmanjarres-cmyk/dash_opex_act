@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-07-03",
+  "fecha_corte": "2026-07-06",
   "mes_label_actual": "Julio 2026",
   "anio_mes_actual": "2026-07",
   "meta_default": 21000000,
@@ -291,26 +291,52 @@
     "ESSA SANTANDER": 1000000
   },
   "tarifa_acompanamiento": 360000,
-  "conteo_inst_norm_ejecutadas_por_or_by_month": {},
+  "conteo_inst_norm_ejecutadas_por_or_by_month": {
+    "2026-07": {
+      "EMCALI CALI": {
+        "INST": 1
+      },
+      "ENEL CUNDINAMARCA": {
+        "NORM": 1
+      }
+    }
+  },
   "ots_abiertas": [
+    {
+      "codigo_ot": "b0b779c0-455d-49a3-b1e0-062f66e7c259",
+      "ot_title": "LEGA_39856_8C63D9",
+      "service_name": "Legalización",
+      "codigo_bia": "CO0100006484",
+      "service_type_id": "LEGA",
+      "electrician_status_id": "ASSIGNED",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "BIA",
+      "fecha_programada": "2026-07-07",
+      "mes_id": "2026-07",
+      "is_bia": true,
+      "servicio": 0.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 18353,
+      "total_ot": 18353.0
+    }
+  ],
+  "ots_ejecutadas": [
     {
       "codigo_ot": "760e2efc-95e3-4de8-a123-91f220409432",
       "ot_title": "INST_47472_CFB9F2",
       "service_name": "Instalación",
       "codigo_bia": "CO7600006927",
       "service_type_id": "INST",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
       "operador_de_red": "EMCALI CALI",
       "tipo_de_medida": "Indirecta",
       "contratista": "ELECPROYECTOS",
-      "fecha_programada": "2026-07-05",
+      "fecha_visita": "2026-07-05 08:00:00",
       "mes_id": "2026-07",
       "is_bia": false,
-      "servicio": 1682932.0,
-      "materiales": 250000.0,
-      "adicionales": 180000.0,
-      "transporte": 697875,
-      "total_ot": 2810807.0
+      "costo_real": 0
     },
     {
       "codigo_ot": "e2ec4082-764c-4064-90d8-fb48dbb0d5f1",
@@ -318,21 +344,15 @@
       "service_name": "Normalización medida",
       "codigo_bia": "CO0100006484",
       "service_type_id": "NORM",
-      "electrician_status_id": "REASSIGNED",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
-      "fecha_programada": "2026-07-05",
+      "fecha_visita": "2026-07-05 08:00:00",
       "mes_id": "2026-07",
       "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 140000.0,
-      "adicionales": 230000.0,
-      "transporte": 21667,
-      "total_ot": 391667.0
-    }
-  ],
-  "ots_ejecutadas": [
+      "costo_real": 0
+    },
     {
       "codigo_ot": "5ff9b8ad-f43a-4669-984c-7b2d65b65666",
       "ot_title": "INST_43085_AA85C5",
@@ -349,7 +369,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-03T17:06:29-05:00",
+  "generated_at": "2026-07-06T10:37:48-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
