@@ -308,7 +308,7 @@
       "service_name": "Legalización",
       "codigo_bia": "CO0100006484",
       "service_type_id": "LEGA",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -369,7 +369,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-07T09:40:34-05:00",
+  "generated_at": "2026-07-07T12:17:51-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
