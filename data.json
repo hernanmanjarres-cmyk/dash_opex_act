@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-07-07",
+  "fecha_corte": "2026-07-08",
   "mes_label_actual": "Julio 2026",
   "anio_mes_actual": "2026-07",
   "meta_default": 21000000,
@@ -365,7 +365,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-07T17:11:54-05:00",
+  "generated_at": "2026-07-08T09:16:50-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
