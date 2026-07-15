@@ -385,7 +385,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-15T14:14:31-05:00",
+  "generated_at": "2026-07-15T17:03:04-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
