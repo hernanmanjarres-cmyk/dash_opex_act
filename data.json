@@ -309,7 +309,7 @@
       "service_name": "Legalización",
       "codigo_bia": "CO0800005330",
       "service_type_id": "LEGA",
-      "electrician_status_id": "IN_ROUTE",
+      "electrician_status_id": "COMPLETED",
       "operador_de_red": "ESSA SANTANDER",
       "tipo_de_medida": "Directa",
       "contratista": "DISELEC",
@@ -385,7 +385,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-15T08:47:23-05:00",
+  "generated_at": "2026-07-15T11:24:11-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
