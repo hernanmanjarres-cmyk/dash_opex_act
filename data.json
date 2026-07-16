@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-07-15",
+  "fecha_corte": "2026-07-16",
   "mes_label_actual": "Julio 2026",
   "anio_mes_actual": "2026-07",
   "meta_default": 21000000,
@@ -299,30 +299,13 @@
       "ENEL CUNDINAMARCA": {
         "LEGA": 1,
         "NORM": 1
+      },
+      "ESSA SANTANDER": {
+        "LEGA": 1
       }
     }
   },
-  "ots_abiertas": [
-    {
-      "codigo_ot": "82bfc79d-1c51-4d4b-ba27-d05dbe27c03d",
-      "ot_title": "LEGA_32751_A32C59",
-      "service_name": "Legalización",
-      "codigo_bia": "CO0800005330",
-      "service_type_id": "LEGA",
-      "electrician_status_id": "COMPLETED",
-      "operador_de_red": "ESSA SANTANDER",
-      "tipo_de_medida": "Directa",
-      "contratista": "DISELEC",
-      "fecha_programada": "2026-07-15",
-      "mes_id": "2026-07",
-      "is_bia": false,
-      "servicio": 277659.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 87804,
-      "total_ot": 365463.0
-    }
-  ],
+  "ots_abiertas": [],
   "ots_ejecutadas": [
     {
       "codigo_ot": "760e2efc-95e3-4de8-a123-91f220409432",
@@ -370,6 +353,21 @@
       "costo_real": 0
     },
     {
+      "codigo_ot": "82bfc79d-1c51-4d4b-ba27-d05dbe27c03d",
+      "ot_title": "LEGA_32751_A32C59",
+      "service_name": "Legalización",
+      "codigo_bia": "CO0800005330",
+      "service_type_id": "LEGA",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "ESSA SANTANDER",
+      "tipo_de_medida": "Directa",
+      "contratista": "DISELEC",
+      "fecha_visita": "2026-07-15 09:00:00",
+      "mes_id": "2026-07",
+      "is_bia": false,
+      "costo_real": 0
+    },
+    {
       "codigo_ot": "5ff9b8ad-f43a-4669-984c-7b2d65b65666",
       "ot_title": "INST_43085_AA85C5",
       "service_name": "Instalación",
@@ -385,7 +383,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-15T17:03:04-05:00",
+  "generated_at": "2026-07-16T08:57:19-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
