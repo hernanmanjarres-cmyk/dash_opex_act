@@ -425,6 +425,11 @@
     ],
     "2026-07": [
       {
+        "servicio": "Instalación",
+        "service_type_id": "INST",
+        "monto": 6633160
+      },
+      {
         "servicio": "Legalización",
         "service_type_id": "LEGA",
         "monto": 557400
@@ -442,6 +447,9 @@
   "tarifa_acompanamiento": 360000,
   "conteo_inst_norm_ejecutadas_por_or_by_month": {
     "2026-07": {
+      "EMCALI CALI": {
+        "INST": 1
+      },
       "ENEL CUNDINAMARCA": {
         "LEGA": 1,
         "NORM": 1
@@ -453,6 +461,21 @@
   },
   "ots_abiertas": [],
   "ots_ejecutadas": [
+    {
+      "codigo_ot": "760e2efc-95e3-4de8-a123-91f220409432",
+      "ot_title": "INST_47472_CFB9F2",
+      "service_name": "Instalación",
+      "codigo_bia": "CO7600006927",
+      "service_type_id": "INST",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
+      "operador_de_red": "EMCALI CALI",
+      "tipo_de_medida": "Indirecta",
+      "contratista": "ELECPROYECTOS",
+      "fecha_visita": "2026-07-05 08:00:00",
+      "mes_id": "2026-07",
+      "is_bia": false,
+      "costo_real": 6633160
+    },
     {
       "codigo_ot": "82bfc79d-1c51-4d4b-ba27-d05dbe27c03d",
       "ot_title": "LEGA_32751_A32C59",
@@ -514,7 +537,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-27T14:36:44-05:00",
+  "generated_at": "2026-07-27T17:09:52-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
