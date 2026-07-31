@@ -141,7 +141,7 @@
   <!-- ▼▼▼ DATA EMBEBIDA — reemplazada por generate_data.py ▼▼▼ -->
 <script id="dashboard-data" type="application/json">
 {
-  "fecha_corte": "2026-07-30",
+  "fecha_corte": "2026-07-31",
   "mes_label_actual": "Julio 2026",
   "anio_mes_actual": "2026-07",
   "meta_default": 21000000,
@@ -459,7 +459,27 @@
       }
     }
   },
-  "ots_abiertas": [],
+  "ots_abiertas": [
+    {
+      "codigo_ot": "6145dbee-1f35-4407-b9df-67345618079b",
+      "ot_title": "VIPE_47506_8FD57D",
+      "service_name": "Visita previa",
+      "codigo_bia": "CO1100006957",
+      "service_type_id": "VIPE",
+      "electrician_status_id": "PENDING_ASSIGNMENT",
+      "operador_de_red": "ENEL CUNDINAMARCA",
+      "tipo_de_medida": "Indirecta",
+      "contratista": null,
+      "fecha_programada": "2026-08-03",
+      "mes_id": "2026-08",
+      "is_bia": null,
+      "servicio": 85000.0,
+      "materiales": 0.0,
+      "adicionales": 0.0,
+      "transporte": 51115,
+      "total_ot": 136115.0
+    }
+  ],
   "ots_ejecutadas": [
     {
       "codigo_ot": "760e2efc-95e3-4de8-a123-91f220409432",
@@ -537,7 +557,7 @@
       "costo_real": 0
     }
   ],
-  "generated_at": "2026-07-30T17:07:55-05:00",
+  "generated_at": "2026-07-31T09:11:26-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
