@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-08-03",
+  "fecha_corte": "2026-08-04",
   "mes_label_actual": "Agosto 2026",
   "anio_mes_actual": "2026-08",
   "meta_default": 21000000,
@@ -284,7 +284,7 @@
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006957",
       "service_type_id": "VIPE",
-      "electrician_status_id": "ASSIGNED",
+      "electrician_status_id": "AUTOMATIC_FAKE_PENDING_CLOSED",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
@@ -299,7 +299,7 @@
     }
   ],
   "ots_ejecutadas": [],
-  "generated_at": "2026-08-03T17:10:26-05:00",
+  "generated_at": "2026-08-04T09:19:33-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
