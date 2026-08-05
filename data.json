@@ -1,5 +1,5 @@
 {
-  "fecha_corte": "2026-08-04",
+  "fecha_corte": "2026-08-05",
   "mes_label_actual": "Agosto 2026",
   "anio_mes_actual": "2026-08",
   "meta_default": 21000000,
@@ -276,30 +276,32 @@
     "ESSA SANTANDER": 1000000
   },
   "tarifa_acompanamiento": 360000,
-  "conteo_inst_norm_ejecutadas_por_or_by_month": {},
-  "ots_abiertas": [
+  "conteo_inst_norm_ejecutadas_por_or_by_month": {
+    "2026-08": {
+      "ENEL CUNDINAMARCA": {
+        "VIPE": 1
+      }
+    }
+  },
+  "ots_abiertas": [],
+  "ots_ejecutadas": [
     {
       "codigo_ot": "6145dbee-1f35-4407-b9df-67345618079b",
       "ot_title": "VIPE_47506_8FD57D",
       "service_name": "Visita previa",
       "codigo_bia": "CO1100006957",
       "service_type_id": "VIPE",
-      "electrician_status_id": "COMPLETED",
+      "electrician_status_id": "CLOSURE_SUCCESSFUL",
       "operador_de_red": "ENEL CUNDINAMARCA",
       "tipo_de_medida": "Indirecta",
       "contratista": "BIA",
-      "fecha_programada": "2026-08-04",
+      "fecha_visita": "2026-08-04 09:00:00",
       "mes_id": "2026-08",
       "is_bia": true,
-      "servicio": 0.0,
-      "materiales": 0.0,
-      "adicionales": 0.0,
-      "transporte": 59748,
-      "total_ot": 59748.0
+      "costo_real": 0
     }
   ],
-  "ots_ejecutadas": [],
-  "generated_at": "2026-08-04T17:14:05-05:00",
+  "generated_at": "2026-08-05T09:12:34-05:00",
   "source": {
     "ejecutado": "Metabase card 71645",
     "forecast": "SQL operations.visitas_general + opex_costs_general, hist 12m excluyendo mes actual"
